@@ -1,0 +1,360 @@
+
+.container2 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.col-1index {
+	flex-basis: 500px;
+	order: 1;
+}
+
+.col-2index {
+	position: relative;
+	z-index: 1;
+	flex-basis: 400px;
+	order: 2;
+}
+
+.trends_change {
+	position: fixed;
+}
+
+.product_image {
+	max-width: 500px;
+	max-height: 500px;
+	background-color: #e6e6e6;
+	margin: auto;
+}
+
+.product_image img {
+	width: 100%;
+	height: auto;
+}
+
+.product_name {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-weight: 600;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.product_seller, .product_description {
+	font-size: 75%;
+	font-weight: 500;
+	font-family: 'Roboto', sans-serif;
+}
+
+.product_description {
+	line-height: 18px;
+	word-spacing: 3px;
+	word-wrap: break-word;
+}
+
+.product_star {
+	font-size: 60%;
+	color: #929aab;
+	font-style: italic;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+	padding-bottom: 5px;
+}
+
+.product_star b {
+	color: darkred;
+}
+
+.product_buy {
+	background-color: #393e46 !important;
+	color: #fafafa;
+	padding: 5px 10px;
+	font-size: 70%;
+	cursor: pointer;
+	user-select: none;
+}
+
+.product_buy:hover {
+	background-color: #393e46;
+	animation-name: buynow;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes buynow{
+	from {
+		box-shadow: 0 0 0;
+	}
+	to {
+		box-shadow: 0 0.5px 2px #929aab;
+	}
+}
+
+.product_price {
+	font-size: 80%;
+	font-weight: 600;
+	font-family: Montserrat, sans-serif;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.articles {
+	max-width: 500px !important;
+	box-shadow: 0 0.5px 1px grey;
+	margin-bottom: 20px;
+}
+
+.product_details {
+	background-color: white;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.products_actions {
+	padding-top: 15px;
+	padding-bottom: 0;
+	user-select: none;
+}
+
+.product_details button {
+	border: 0;
+	background-color: white;
+	outline: none;
+	margin-right: 7px;
+}
+
+.products_actions button {
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+	white-space: normal;
+	text-wrap: normal;
+	color: #393e46;
+	cursor: pointer;
+}
+
+.fav {
+	float: right !important;
+	font-size: 35px !important;
+	margin-top: 7px !important;
+}
+
+.footer {
+	font-size: 10px;
+	color: #929aab;
+	font-family: 'Roboto', sans-serif;
+}
+.col-2index > div > p {
+	margin-bottom: 10px;
+}
+
+
+/*Trending*/
+.trending {
+	display: flex;
+	box-shadow: 0 0.5px 1px #393e46;
+	margin-bottom: 10px;
+	width: 380px;
+}
+
+.trending:hover {
+	animation-name: trendhover;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	cursor: pointer;
+}
+
+@keyframes trendhover{
+	from {
+		box-shadow: 0 0.5px 1px #393e46;
+	}
+	to {
+		box-shadow: 0 0.5px 2px #393e46;
+	}
+}
+
+.trend_image {
+	flex-basis: 90px;
+	height: inherit;
+	background-color: white;
+	order: 1;
+}
+
+.trend_image img {
+	width: 80px;
+	height: inherit;
+}
+
+.trend_details {
+	flex-basis: 300px;
+	order: 2;
+	background-color: white;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 12px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.trend_star {
+	font-size: 80%;
+	color: #929aab;
+	font-style: italic;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+	padding-bottom: 5px;
+}
+
+.trend_star b {
+	color: darkred;
+}
+
+.trend_name {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+}
+.trend_price {
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 5px;
+}
+
+#share_pop {
+	display: none;
+	position: fixed;
+	z-index: 3;
+	width: 250px;
+	height: 150px;
+	padding: 15px;
+	background-color: #eeeeee;
+	opacity: 0.9;
+	font-size: 12px;
+	box-shadow: 0 0.5px 2px #393e46;
+	border-radius: 10px;
+}
+
+#more_pop {
+	display: none;
+	position: fixed;
+	z-index: 4;
+	width: 250px;
+	height: 300px;
+	padding: 15px;
+	background-color: #eeeeee;
+	opacity: 0.9;
+	font-size: 12px;
+	box-shadow: 0 0.5px 2px #393e46;
+	border-radius: 10px;
+	overflow: auto;
+	word-wrap: break-word;
+}
+
+#twitz {
+	margin-top: 10px;
+	-webkit-font-smoothing: antialiased;
+	direction: ltr;
+	font: inherit;
+	line-height: normal;
+	font-family: sans-serif;
+	background-repeat: no-repeat;
+	border-radius: 100px;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 16px;
+	position: relative;
+	-webkit-appearance: button;
+	cursor: pointer;
+	color: #fff;
+	background-color: #1da1f2;
+	border: 1px solid #1da1f2;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+#close, #close2 {
+	border: 1px solid #393e46;
+	background-color: #393e46;
+	color: #f7f7f7;
+	font-size: 10px;
+	padding: 2px 5px;
+	float: right;
+	clear: both;
+	margin-top: 0;
+	cursor: pointer;
+	user-select: none;
+}
+
+#copy {
+	background-color: #929aab;
+	-webkit-font-smoothing: antialiased;
+	direction: ltr;
+	font: inherit;
+	margin-top: 10px;
+	line-height: normal;
+	font-family: sans-serif;
+	background-repeat: no-repeat;
+	border-radius: 100px;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 2px 16px;
+	position: relative;
+	-webkit-appearance: button;
+	cursor: pointer;
+	color: #fff;
+	border: 1px solid #929aab;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+	text-wrap: normal;
+	width: 215px;
+}
+
+#copy span {
+	font-size: 60%;
+	color: darkred;
+}
+
+#share_name {
+	padding-top: 25px;
+}
+
+#text {
+	display: block;
+	font-size: 14px;
+	font-size: 10px;
+	word-wrap: break-word;
+	outline: none;
+	border: 0;
+	background-color: #929aab;
+	color: black;
+	cursor: pointer;
+	width: 200px;
+}
+
+.product_seller img {
+	width: 40px;
+	height: auto;
+}
+
+#more_timeline {
+	margin-top: 25px;
+	font-weight: 600;
+}
+
+.more {
+	padding-top: 15px;
+	font-family: Roboto, sans-serif;
+	line-height: 18px;
+	word-spacing: 3px;
+}
+
+#feed_head, #trend_head {
+	padding: 0 5px 5px 5px;
+	font-size: 70%;
+	font-weight: 600;
+}

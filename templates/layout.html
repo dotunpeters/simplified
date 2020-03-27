@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="{{ title }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="description" content="{{ description }}">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename="image/favicon.png")}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/layout.css")}}" />
+    {% block style %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/responsive.css")}}" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap" rel="stylesheet">
+
+    <!-- Include Handlebars from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <!--Handlebars template for search autocomplete-->
+    <script id="search-template" type="text/x-handlebars-template">
+        {% raw -%}
+        {{#each search_catalog}}
+        <a href="{{ this.href }}">
+            <div class="search_list">
+                <div class="query">{{ this.query }}</div>
+                <div>
+                    <span class="in_value">in</span>
+                    <span class="cat-search">{{ this.item }}</span>
+                </div>
+            </div>
+        </a>
+        {{/each}}
+        {%- endraw %}
+    </script>
+
+    <!--Handlebars template for category menu-->
+    <script id="category-template" type="text/x-handlebars-template">
+        {% raw -%}
+        {{#each category_catalog}}
+        <a href="{{ this.href }}">
+            <div class="category_list">
+                {{ this.link }}
+            </div>
+        </a>
+        {{/each}}
+        {%- endraw %}
+    </script>
+
+    <script src="{{url_for('static', filename="scripts/layout.js")}}"></script>
+
+    {% block scripts %}{% endblock %}
+
+</head>
+
+<body>
+
+    <div class="window">
+
+        <header class="container">
+            <div class="col-1"></div>
+            <div class="col-2 heads">
+                <div class="logo">
+                    <a href="{{ url_for("home") }}">
+                        <img alt="shoplte logo" src="{{ url_for('static', filename="image/logo.png")}}" />
+                    </a>
+                </div>
+                <form id="search" method="GET" , action="{{ url_for("search_query") }}">
+                    <div id="search_col">
+                        <input id="search_input" type="search" name="query" placeholder="search items..." />
+                        <button><img alt="shoplte logo" src="{{ url_for('static', filename="image/search.png")}}" /></button>
+                    </div>
+                    <div id="search_auto"> </div>
+                </form>
+                <div class="menu">
+                    <p id="mobile_search">&#128903;</p>
+                    <span id="favourite"><a id="favlink">&#10084;</a><span id="favcounter"></span></span>
+                    <span id="category">&#9776;</span>
+                    <div id="catmenu"> </div>
+                </div>
+
+            </div>
+            <div class="col-3"></div>
+        </header>
+
+        <div id="main" class="container pagebackground">
+            <div class="col-1"></div>
+            <div class="col-2">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/index.css")}}" />
+{% endblock %}
+
+{% block scripts %}
+
+	<!-- Share popup handlebars template -->
+	<script id="share-template" type="text/x-handlebars-template">
+		{% raw -%}
+		{{#each share_catalog}}
+			<div id="close">close</div>
+			<div id="share_name">{{this.name}} </div>
+			<div id="copy"><span>Click to copy URL:</span><input id="text" type="text" value="{{this.link}}"/></div>
+			<a id="twitz" href="{{this.twitter}}" target="_blank"> Tweet this</a>
+		{{/each}}
+		{%- endraw %}
+	</script>
+
+	<!-- more handlebars template -->
+	<script id="more-template" type="text/x-handlebars-template">
+		{% raw -%}
+		<div id="close2">close</div>
+		<div id="more_timeline">Details</div>
+		{{#each more_catalog}}
+		<div class="more"> {{this}} </div>
+		<hr />
+		{{/each}}
+		{%- endraw %}
+	</script>
+
+	<!-- infinite_list handlebars template -->
+	<script id="infinite_list_template" type="text/x-handlebars-template">
+		{% raw -%}
+		{{#each infinite_catalog}}
+		<article class="articles">
+			<div class="product_image"> <img src="{{this.image_url}}" alt="{{ this.seller }}" /> </div>
+			<div class="product_details">
+				<div class="products_actions">
+					<button data-more="{{this.description}}" class="graph">&#8690;</button>
+					<button data-share="{{this.sku}}" data-name="{{this.name}}" class="share">&#10148;</button>
+					<button data-sku="{{this.sku}}" class="fav">&#9825;</button>
+				</div>
+				<p class="product_name"> {{this.name}} </p>
+				<p class="product_star"> <b>{{this.stars}}&#9733;</b> with <b>{{this.reviews}}</b> reviews. <b>{{this.original}}%</b> original.</p>
+				<p class="product_star"> <b>{{this.category}}</b> </p>
+				<p class="product_description"> {{this.short}}... </p>
+				<p class="product_price"> &#8358;{{this.price}} <span class="product_seller">on <img src="/static/image/{{ this.seller }}.png" alt="{{ this.seller }}" /></span> </p>
+
+				<a class="product_buy" target="_blank" href="{{this.link}}"> BUY NOW </a>
+
+			</div>
+		</article>
+		{{/each}}
+		{%- endraw %}
+	</script>
+
+	<script src="{{url_for('static', filename="scripts/more.js")}}"></script>
+	<script src="{{url_for('static', filename="scripts/index.js")}}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container2">
+	<div class="col-1index">
+		<p id="feed_head">{{ title }}</p>
+		{% for feed in feeds.items %}
+		<article class="articles">
+			<div class="product_image"> <img src="{{feed.image_url}}" alt="{{ feed.seller }}" /> </div>
+			<div class="product_details">
+				<div class="products_actions">
+					<button data-more="{{feed.description}}" class="graph">&#8690;</button>
+					<button data-share="{{feed.sku}}" data-name="{{feed.name}}" class="share">&#10148;</button>
+					<button data-sku="{{feed.sku}}" class="fav">&#9825;</button>
+				</div>
+				<p class="product_name"> {{feed.name}} </p>
+				<p class="product_star"> <b>{{feed.stars}}&#9733;</b> with <b>{{feed.reviews}}</b> reviews. <b>{{feed.original}}%</b> original.</p>
+				<p class="product_star"> <b>{{feed.category.capitalize()}}</b> </p>
+				<p class="product_description"> {{feed.description[0:400]}}... </p>
+				<p class="product_price"> &#8358;{{feed.price}} <span class="product_seller">on <img src=" {{url_for("static", filename="image")}}/{{ feed.seller }}.png" alt="{{ feed.seller }}" /></span> </p>
+				<a class="product_buy" target="_blank" href="{{feed.link}}"> BUY NOW </a>
+			</div>
+		</article>
+		{% endfor %}
+		<!-- Share pop -->
+		<div id="share_pop"> </div>
+		<div id="more_pop"> </div>
+	</div>
+
+
+	<div class="col-2index">
+		<div class="trends_change">
+			<p id="trend_head">Trending</p>
+			{% for trend in trends %}
+			<a href="{{trend.link}}" target="_blank">
+				<article class="trending">
+					<div class="trend_image">
+						<img src="{{trend.image_url}}" alt="{{ trend.seller }}" />
+					</div>
+					<div class="trend_details">
+						<p class="trend_name"> {{trend.name}} </p>
+						<p class="trend_star"> <b>{{trend.stars}}&#9733;</b> with <b>{{trend.reviews}}</b> reviews in <b>{{trend.category.capitalize()}}</b></p>
+						<p class="trend_price"> &#8358;{{trend.price}} <span class="product_seller">on <img src=" {{url_for("static", filename="image")}}/{{ trend.seller }}.png" alt="{{ trend.seller }}" /></span> </p>
+					</div>
+				</article>
+			</a>
+			{% endfor %}
+
+			<p class="footer">&copy; {{ year }} . Shoplte.</p>
+		</div>
+	</div>
+
+
+</div>
+
+{% endblock %}
+
