@@ -3,10 +3,25 @@ Routes and views for the flask application.
 """
 
 #import packages
+from flask import Flask
+from flask_session import Session
+from tempfile import mkdtemp
+import os
+
+app = Flask(__name__)
+
+#session configuration
+app.config["DEBUG"] = True
+app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+#create user session
+Session(app)
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
-import app
-from .models import *
+from app.models import *
 import os
 
 #database configuration
