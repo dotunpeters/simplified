@@ -162,7 +162,7 @@ def share(sku):
         for each in products:
             title = each.name
             break
-    except Exception as e:
+    except:
         title = "Item not found"
     
     session["page"] = None
