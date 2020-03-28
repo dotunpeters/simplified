@@ -9,9 +9,9 @@ from requests_html import HTML, HTMLSession
 from time import perf_counter
 from multiprocessing import Process
 from csv import writer
-from shoplte.models import *
-from shoplte import app
-from shoplte import custom_config
+from models import *
+import app
+import custom_config
 import os
 
 #database configuration

@@ -5,9 +5,9 @@ Routes and views for the flask application.
 #import packages
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
-from shoplte import app
-from shoplte import custom_config
-from shoplte.models import *
+import app
+import custom_config
+from models import *
 import os
 
 #database configuration

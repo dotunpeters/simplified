@@ -1,5 +1,5 @@
 
-from shoplte.models import *
+from models import *
 
 def signup(name, email, password):
 	#check if name in database and return error message
