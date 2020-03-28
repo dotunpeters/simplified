@@ -6,8 +6,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
 import app
-import custom_config
-from models import *
+from app.models import *
 import os
 
 #database configuration

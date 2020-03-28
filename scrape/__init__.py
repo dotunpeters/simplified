@@ -9,9 +9,8 @@ from requests_html import HTML, HTMLSession
 from time import perf_counter
 from multiprocessing import Process
 from csv import writer
-from models import *
 import app
-import custom_config
+from app.models import *
 import os
 
 #database configuration

@@ -3,7 +3,6 @@ The flask application package.
 """
 
 from flask import Flask
-import custom_config
 from flask_session import Session
 from tempfile import mkdtemp
 import os
@@ -20,4 +19,4 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 #create user session
 Session(app)
 
-import views
+import app.views
