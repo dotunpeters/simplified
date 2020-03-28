@@ -10,7 +10,7 @@ from time import perf_counter
 from multiprocessing import Process
 from csv import writer
 import app
-from app.models import *
+from .models import *
 import os
 
 #database configuration

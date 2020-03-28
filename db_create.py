@@ -5,8 +5,7 @@ Create database table
 
 #import packages
 import app
-import app.custom_config
-from app.models import *
+from .models import *
 import os
 
 #database configuration

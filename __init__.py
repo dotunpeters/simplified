@@ -19,4 +19,4 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 #create user session
 Session(app)
 
-import app.views
+import .views
