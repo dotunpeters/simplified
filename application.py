@@ -167,7 +167,7 @@ def share(sku):
     
     session["page"] = None
 
-    for each_item in products.items:
+    for each_item in products:
         each_item.original = int(float(each_item.stars) * 20)
         print(each_item.original)
 
