@@ -21,8 +21,23 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 Session(app)
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
-from app.models import *
 import os
+
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+class Products(db.Model):
+    __tablename__ = "products"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    sku = db.Column(db.String, nullable=False)
+    price = db.Column(db.String, nullable=False)
+    stars = db.Column(db.String, nullable=False)
+    link = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String, nullable=False)
+    reviews = db.Column(db.Integer, nullable=False)
+    seller = db.Column(db.String, nullable=False)
+    category = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=False)
 
 #database configuration
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
