@@ -8,9 +8,10 @@ from flask import render_template, session, redirect, url_for, jsonify, request
 from shoplte import app
 from shoplte import custom_config
 from shoplte.models import *
+import os
 
 #database configuration
-app.config["SQLALCHEMY_DATABASE_URI"] = custom_config.database_url
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
