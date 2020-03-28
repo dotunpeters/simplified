@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/index.css")}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='content/index.css')}}" />
 {% endblock %}
 
 {% block scripts %}
@@ -56,8 +56,8 @@
 		{%- endraw %}
 	</script>
 
-	<script src="{{url_for('static', filename="scripts/more.js")}}"></script>
-	<script src="{{url_for('static', filename="scripts/index.js")}}"></script>
+	<script src="{{url_for('static', filename='scripts/more.js')}}"></script>
+	<script src="{{url_for('static', filename='scripts/index.js')}}"></script>
 {% endblock %}
 
 {% block content %}
@@ -78,7 +78,7 @@
 				<p class="product_star"> <b>{{feed.stars}}&#9733;</b> with <b>{{feed.reviews}}</b> reviews. <b>{{feed.original}}%</b> original.</p>
 				<p class="product_star"> <b>{{feed.category.capitalize()}}</b> </p>
 				<p class="product_description"> {{feed.description[0:400]}}... </p>
-				<p class="product_price"> &#8358;{{feed.price}} <span class="product_seller">on <img src=" {{url_for("static", filename="image")}}/{{ feed.seller }}.png" alt="{{ feed.seller }}" /></span> </p>
+				<p class="product_price"> &#8358;{{feed.price}} <span class="product_seller">on <img src=" {{url_for('static', filename='image')}}/{{ feed.seller }}.png" alt="{{ feed.seller }}" /></span> </p>
 				<a class="product_buy" target="_blank" href="{{feed.link}}"> BUY NOW </a>
 			</div>
 		</article>
@@ -101,7 +101,7 @@
 					<div class="trend_details">
 						<p class="trend_name"> {{trend.name}} </p>
 						<p class="trend_star"> <b>{{trend.stars}}&#9733;</b> with <b>{{trend.reviews}}</b> reviews in <b>{{trend.category.capitalize()}}</b></p>
-						<p class="trend_price"> &#8358;{{trend.price}} <span class="product_seller">on <img src=" {{url_for("static", filename="image")}}/{{ trend.seller }}.png" alt="{{ trend.seller }}" /></span> </p>
+						<p class="trend_price"> &#8358;{{trend.price}} <span class="product_seller">on <img src=" {{url_for('static', filename='image')}}/{{ trend.seller }}.png" alt="{{ trend.seller }}" /></span> </p>
 					</div>
 				</article>
 			</a>

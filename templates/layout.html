@@ -7,10 +7,10 @@
     <meta name="keywords" content="{{ keywords }}">
     <meta name="description" content="{{ description }}">
     <title>{{ title }}</title>
-    <link rel="shortcut icon" href="{{url_for('static', filename="image/favicon.png")}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/layout.css")}}" />
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.png')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='content/layout.css')}}" />
     {% block style %}{% endblock %}
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/responsive.css")}}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='content/responsive.css')}}" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap" rel="stylesheet">
 
     <!-- Include Handlebars from a CDN -->
@@ -61,13 +61,13 @@
             <div class="col-2 heads">
                 <div class="logo">
                     <a href="{{ url_for("home") }}">
-                        <img alt="shoplte logo" src="{{ url_for('static', filename="image/logo.png")}}" />
+                        <img alt="shoplte logo" src="{{ url_for('static', filename='image/logo.png')}}" />
                     </a>
                 </div>
-                <form id="search" method="GET" , action="{{ url_for("search_query") }}">
+                <form id="search" method="GET" , action="{{ url_for('search_query') }}">
                     <div id="search_col">
                         <input id="search_input" type="search" name="query" placeholder="search items..." />
-                        <button><img alt="shoplte logo" src="{{ url_for('static', filename="image/search.png")}}" /></button>
+                        <button><img alt="shoplte logo" src="{{ url_for('static', filename='image/search.png')}}" /></button>
                     </div>
                     <div id="search_auto"> </div>
                 </form>

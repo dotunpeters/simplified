@@ -1,8 +1,8 @@
 ﻿{% extends "layout.html" %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/index.css")}}" />
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename="content/indexparse.css")}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='content/index.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='content/indexparse.css')}}" />
 {% endblock %}
 
 {% block scripts %}
@@ -51,7 +51,7 @@
                 <p class="product_star"> <b>{{this.stars}}&#9733;</b> with <b>{{this.reviews}}</b> reviews. <b>{{this.original}}%</b> original.</p>
                 <p class="product_star"> <b>{{feed.category.capitalize()}}</b> </p>
                 <p class="product_description"> {{feed.description[0:400]}}... </p>
-                <p class="product_price"> &#8358;{{feed.price}} <span class="product_seller">on <img src=" {{url_for("static", filename="image")}}/{{ feed.seller }}.png" alt="{{ feed.seller }}" /></span> </p>
+                <p class="product_price"> &#8358;{{feed.price}} <span class="product_seller">on <img src="{{url_for('static', filename='image')}}/{{ feed.seller }}.png" alt="{{ feed.seller }}" /></span> </p>
 
                 <a class="product_buy" target="_blank" href="{{feed.link}}"> BUY NOW </a>
 
