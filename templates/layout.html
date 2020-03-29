@@ -60,7 +60,7 @@
             <div class="col-1"></div>
             <div class="col-2 heads">
                 <div class="logo">
-                    <a href="{{ url_for("home") }}">
+                    <a href="{{ url_for('home') }}">
                         <img alt="shoplte logo" src="{{ url_for('static', filename='image/logo.png')}}" />
                     </a>
                 </div>
@@ -72,7 +72,7 @@
                     <div id="search_auto"> </div>
                 </form>
                 <div class="menu">
-                    <p id="mobile_search"><img alt="search icon" src="{{ url_for('static', filename='image/search.png')}}" /></p>
+                    <p id="mobile_search"><img alt="search icon" src="{{ url_for('static', filename='image/search.png')}}" /> search </p>
                     <span id="favourite"><a id="favlink">&#10084;</a><span id="favcounter"></span></span>
                     <span id="category">&#9776;</span>
                     <div id="catmenu"> </div>

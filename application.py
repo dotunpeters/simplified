@@ -283,11 +283,6 @@ def more():
             products = parser(render)
             session["page"] = "cat-search"
             return jsonify(products)
-
-        #render none json route
-        if session["page"] == None:
-            return None
-
     except Exception as e:
         print(f"error: {e}")
         session['err_counter'] += 1
@@ -299,7 +294,13 @@ def more():
             session["page"] = "home"
             more()
         more()
-        
+    
+    #else
+    render = Products.query.paginate(page=page, per_page=2)
+    products = parser(render)
+    session["page"] = "home"
+    return jsonify(products)
+
 
 #handle server errors
 @app.errorhandler(404)
