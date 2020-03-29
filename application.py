@@ -254,7 +254,6 @@ def more():
         if session["page"] == "home":
             render = Products.query.paginate(page=page, per_page=2)
             products = parser(render)
-            session["page"] = "home"
             return jsonify(products)
 
         #render category json route
@@ -263,8 +262,6 @@ def more():
             categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=categ).paginate(page=page, per_page=2)
             products = parser(render)
-            categ = categ.replace(" ", "-").lower()
-            session["page"] = categ
             return jsonify(products)
 
         #render search json route
@@ -272,7 +269,6 @@ def more():
             query = session_data["query"]
             render = Products.query.filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
             products = parser(render)
-            session["page"] = "search"
             return jsonify(products)
 
         #render category search json route
@@ -281,8 +277,11 @@ def more():
             cat_checks = session_data["query"][1]
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
             products = parser(render)
-            session["page"] = "cat-search"
             return jsonify(products)
+
+        if session["page"] == None:
+            return None
+            
     except Exception as e:
         print(f"error: {e}")
         session['err_counter'] += 1
