@@ -132,7 +132,7 @@
 	margin: 0;
 	line-height: 0;
 	white-space: normal;
-	text-wrap: normal;
+	word-wrap: normal;
 	color: #393e46;
 	cursor: pointer;
 }
@@ -237,6 +237,7 @@
 	font-size: 12px;
 	box-shadow: 0 0.5px 2px #393e46;
 	border-radius: 10px;
+	overflow: auto;
 }
 
 #more_pop {
@@ -310,7 +311,7 @@
 	color: #fff;
 	border: 1px solid #929aab;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
-	text-wrap: normal;
+	word-wrap: normal;
 	width: 215px;
 }
 
