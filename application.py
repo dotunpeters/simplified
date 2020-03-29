@@ -23,6 +23,7 @@ from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
 import os
 
+#models
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 class Products(db.Model):
@@ -49,12 +50,14 @@ with app.app_context():
     session_data = {}
     trendings = Products.query.filter(Products.reviews >= 10).order_by(Products.stars.desc()).limit(5).all()
 
-
 #Routes
 @app.route('/')
 @app.route('/feeds')
 def home():
     """Renders the feeds page."""
+    #manage api error
+    session["err_counter"] = 0
+
     year = datetime.now().year
     title="Feeds"
 
@@ -77,6 +80,9 @@ def home():
 @app.route('/category/<string:cat>')
 def category(cat):
     """Renders the category route."""
+    #manage api error
+    session["err_counter"] = 0
+
     year = datetime.now().year
     title = cat.replace("-", " ").capitalize()
 
@@ -102,6 +108,9 @@ def category(cat):
 @app.route('/search/<string:category>/<string:query>')
 def search(category, query):
     """Renders the search complete route."""
+    #manage api error
+    session["err_counter"] = 0
+
     year = datetime.now().year
     title = f"Search result for '{query}'"
 
@@ -128,6 +137,9 @@ def search(category, query):
 @app.route('/search', methods=["GET"])
 def search_query():
     """Renders the search complete route."""
+    #manage api error
+    session["err_counter"] = 0
+
     year = datetime.now().year
 
     #get query
@@ -154,6 +166,9 @@ def search_query():
 @app.route('/share/<string:sku>')
 def share(sku):
     """Renders the category api."""
+    #manage api error
+    session["err_counter"] = 0
+
     year = datetime.now().year
 
     #get target product
@@ -178,6 +193,9 @@ def share(sku):
 @app.route('/favourites/<string:favlist>', methods=["GET"])
 def favourites(favlist):
     """Renders the favourites template."""
+    #manage api error
+    session["err_counter"] = 0
+    
     year = datetime.now().year
     title="Favourite items"
 
@@ -265,10 +283,17 @@ def more():
             products = parser(render)
             session["page"] = "cat-search"
             return jsonify(products)
-    except:
-        render = Products.query.paginate(page=page, per_page=2)
-        products = parser(render)
-        return jsonify(products)
+    except Exception as e:
+        print(f"error: {e}")
+        session['err_counter'] += 1
+        try:
+            print(f"err_count: {session['err_counter']}")
+        except Exception as e:
+            print(f"{e}")
+        if session['err_counter'] >= 5:
+            session["page"] = "home"
+            more()
+        more()
     
     #else
     render = Products.query.paginate(page=page, per_page=2)
