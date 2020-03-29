@@ -67,12 +67,12 @@
                 <form id="search" method="GET" , action="{{ url_for('search_query') }}">
                     <div id="search_col">
                         <input id="search_input" type="search" name="query" placeholder="search items..." />
-                        <button><img alt="shoplte logo" src="{{ url_for('static', filename='image/search.png')}}" /></button>
+                        <button><img alt="search icon" src="{{ url_for('static', filename='image/search.png')}}" /></button>
                     </div>
                     <div id="search_auto"> </div>
                 </form>
                 <div class="menu">
-                    <p id="mobile_search">&#9906;</p>
+                    <p id="mobile_search"><img alt="search icon" src="{{ url_for('static', filename='image/search.png')}}" /></p>
                     <span id="favourite"><a id="favlink">&#10084;</a><span id="favcounter"></span></span>
                     <span id="category">&#9776;</span>
                     <div id="catmenu"> </div>
