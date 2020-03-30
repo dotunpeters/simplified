@@ -292,7 +292,7 @@ def more():
             homeoffice_products = parser(render)
             return jsonify(homeoffice_products)
 
-        #render phones-and-tablets category json route
+        #render phones-and-tablets category json route 
         if session["page"].lower() == "phones-and-tablets":
             phonestablets_categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=phonestablets_categ).paginate(page=page, per_page=2)
