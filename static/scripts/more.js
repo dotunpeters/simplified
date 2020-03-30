@@ -28,7 +28,7 @@ function main() {
                 data.forEach((each) => {
                     each["short"] = each.description.slice(0, 400);
                 });
-            }catch {
+            }catch(err) {
                 return false;
             }
 
