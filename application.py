@@ -47,6 +47,7 @@ db.init_app(app)
 
 #fixed trending
 with app.app_context():
+    session_data = {}
     trendings = Products.query.filter(Products.reviews >= 10).order_by(Products.stars.desc()).limit(5).all()
 
 #Routes
@@ -62,16 +63,14 @@ def home():
     keywords = "original, jumia, konga"
     description = "Surf through online products from popular eCommerce site in Nigeria with ease."
 
-<<<<<<< HEAD
-    products = Products.query.paginate(page=1, per_page=5)
-=======
-    #session condition 
+    #session condition
     if "home" not in session_data:
         session_data["home"] = Products.query.paginate(page=1, per_page=5)
->>>>>>> v1.2
 
     session["page"] = "home"
 
+    #set products
+    products = session_data["home"]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
 
@@ -93,10 +92,13 @@ def category(cat):
     #get target list category
     cat_checks = title.lower()
 
-    products = Products.query.filter_by(category=cat_checks).paginate(page=1, per_page=5)
+    #session condition
+    if cat not in session_data:
+        session_data[cat] = Products.query.filter_by(category=cat_checks).paginate(page=1, per_page=5)
 
     session["page"] = cat
-
+    #set products
+    products = session_data[cat]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
 
@@ -118,11 +120,15 @@ def search(category, query):
     #query in category
     cat_checks = category.lower()
 
-    products = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=1, per_page=5)
+    #session condition
+    if f"{cat_checks}-{query}" not in session_data:
+        session_data[f"{cat_checks}-{query}"] = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=1, per_page=5)
 
     session["page"] = f"cat-search"
-    session["query"] = [query, cat_checks]
+    session_data["query"] = [query, cat_checks]
 
+    #set products
+    products = session_data[f"{cat_checks}-{query}"]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
 
@@ -144,11 +150,15 @@ def search_query():
     keywords = f"original, {query}"
     description = f"All original {query} on jumia and konga | Surf through online products from popular eCommerce site in Nigeria with ease."
 
-    products = Products.query.filter(Products.name.ilike(f"%{query}%")).paginate(page=1, per_page=5)
+    #session condition
+    if query not in session_data:
+        session_data[query] = Products.query.filter(Products.name.ilike(f"%{query}%")).paginate(page=1, per_page=5)
         
     session["page"] = "search"
-    session["query"] = query
+    session_data["query"] = query
 
+    #set products
+    products = session_data[query]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
 
@@ -282,7 +292,7 @@ def more():
             homeoffice_products = parser(render)
             return jsonify(homeoffice_products)
 
-        #render phones-and-tablets category json route 
+        #render phones-and-tablets category json route
         if session["page"].lower() == "phones-and-tablets":
             phonestablets_categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=phonestablets_categ).paginate(page=page, per_page=2)
@@ -291,15 +301,15 @@ def more():
 
         #render search json route
         if session["page"] == "search":
-            query = session["query"]
+            query = session_data["query"]
             render = Products.query.filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
             products = parser(render)
             return jsonify(products)
 
         #render category search json route
         if session["page"] == "cat-search":
-            query = session["query"][0]
-            cat_checks = session["query"][1]
+            query = session_data["query"][0]
+            cat_checks = session_data["query"][1]
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
             products = parser(render)
             return jsonify(products)
