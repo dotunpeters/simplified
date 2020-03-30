@@ -56,7 +56,7 @@ function main() {
 			//share_pop display
 			document.querySelector('#share_pop').innerHTML = content;
 			document.querySelector("#share_pop").style.top = `${window.innerHeight / 2 - 50}px`;
-			document.querySelector("#share_pop").style.left = `${window.innerWidth / 2 - 125}px`;
+			document.querySelector("#share_pop").style.left = `${window.innerWidth / 2 - 130}px`;
 
 			document.querySelector('#share_pop').style.display = "block";
 			document.querySelector('#twitz').style.display = "block";
@@ -106,7 +106,7 @@ function main() {
 			document.querySelector('#more_pop').innerHTML = content;
 
 			document.querySelector("#more_pop").style.top = `${window.innerHeight / 2 - 100}px`;
-			document.querySelector("#more_pop").style.left = `${window.innerWidth / 2 - 125}px`;
+			document.querySelector("#more_pop").style.left = `${window.innerWidth / 2 - 130}px`;
 			document.querySelector('#more_pop').style.display = "block";
 
 			//close
