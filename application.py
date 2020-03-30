@@ -184,8 +184,8 @@ def share(sku):
             break
     except:
         title = "Item not found"
-            keywords = f"original"
-            description = f"Original product on simplified | Surf through online products from popular eCommerce site in Nigeria with ease."
+        keywords = f"original"
+        description = f"Original product on simplified | Surf through online products from popular eCommerce site in Nigeria with ease."
     
     session["page"] = None
 
