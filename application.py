@@ -62,7 +62,13 @@ def home():
     keywords = "original, jumia, konga"
     description = "Surf through online products from popular eCommerce site in Nigeria with ease."
 
+<<<<<<< HEAD
     products = Products.query.paginate(page=1, per_page=5)
+=======
+    #session condition 
+    if "home" not in session_data:
+        session_data["home"] = Products.query.paginate(page=1, per_page=5)
+>>>>>>> v1.2
 
     session["page"] = "home"
 
