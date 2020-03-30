@@ -23,14 +23,10 @@ function main() {
 
         //callback
         request.onload = () => {
-            try {
-                let data = JSON.parse(request.responseText);
-                data.forEach((each) => {
-                    each["short"] = each.description.slice(0, 400);
-                });
-            }catch(err) {
-                return false;
-            }
+            let data = JSON.parse(request.responseText);
+            data.forEach((each) => {
+                each["short"] = each.description.slice(0, 400);
+            });
 
             add_product(data);
         };
