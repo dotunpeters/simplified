@@ -321,8 +321,7 @@ def more():
     except:
         session['err_counter'] += 1
         if session['err_counter'] >= 5:
-            session["page"] = "home"
-            more()
+            return None
         more()
         
 
