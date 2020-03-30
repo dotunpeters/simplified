@@ -60,6 +60,8 @@ def home():
 
     year = datetime.now().year
     title="Feeds"
+    keywords = "original, jumia, konga"
+    description = "Surf through online products from popular eCommerce site in Nigeria with ease."
 
     #session condition
     if "home" not in session_data:
@@ -71,10 +73,9 @@ def home():
     products = session_data["home"]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #return index template
-    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 
 @app.route('/category/<string:cat>')
@@ -85,6 +86,8 @@ def category(cat):
 
     year = datetime.now().year
     title = cat.replace("-", " ").capitalize()
+    keywords = f"original, {cat}"
+    description = f"All original {cat} products on jumia and konga | Surf through online products from popular eCommerce site in Nigeria with ease."
 
     #get target list category
     cat_checks = title.lower()
@@ -94,15 +97,13 @@ def category(cat):
         session_data[cat] = Products.query.filter_by(category=cat_checks).paginate(page=1, per_page=5)
 
     session["page"] = cat
-    print(cat)
     #set products
     products = session_data[cat]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #return index template
-    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 
 @app.route('/search/<string:category>/<string:query>')
@@ -113,6 +114,8 @@ def search(category, query):
 
     year = datetime.now().year
     title = f"Search result for '{query}'"
+    keywords = f"original, {category}, {query}"
+    description = f"All original {query} in {category} on jumia and konga | Surf through online products from popular eCommerce site in Nigeria with ease."
 
     #query in category
     cat_checks = category.lower()
@@ -128,10 +131,9 @@ def search(category, query):
     products = session_data[f"{cat_checks}-{query}"]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #return index template
-    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 
 @app.route('/search', methods=["GET"])
@@ -145,6 +147,8 @@ def search_query():
     #get query
     query = request.args.get("query")
     title = f"Search result for '{query}'"
+    keywords = f"original, {query}"
+    description = f"All original {query} on jumia and konga | Surf through online products from popular eCommerce site in Nigeria with ease."
 
     #session condition
     if query not in session_data:
@@ -157,10 +161,9 @@ def search_query():
     products = session_data[query]
     for each_item in products.items:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #render template
-    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("index.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 
 @app.route('/share/<string:sku>')
@@ -176,18 +179,21 @@ def share(sku):
         products = Products.query.filter(Products.sku == sku).all()
         for each in products:
             title = each.name
+            keywords = f"original, {each.name}"
+            description = f"Original {each.name} on simplified | Surf through online products from popular eCommerce site in Nigeria with ease."
             break
     except:
         title = "Item not found"
+            keywords = f"original"
+            description = f"Original product on simplified | Surf through online products from popular eCommerce site in Nigeria with ease."
     
     session["page"] = None
 
     for each_item in products:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #render template
-    return render_template("indexparse.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("indexparse.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 
 @app.route('/favourites/<string:favlist>', methods=["GET"])
@@ -198,6 +204,8 @@ def favourites(favlist):
     
     year = datetime.now().year
     title="Favourite items"
+    keywords = f"favourite, products, original, jumia, konga"
+    description = f"Original product on simplified | Surf through online products from popular eCommerce site in Nigeria with ease."
 
     #session condition
     if session["page"] != "favourite":
@@ -216,21 +224,14 @@ def favourites(favlist):
 
     for each_item in products:
         each_item.original = int(float(each_item.stars) * 20)
-        print(each_item.original)
 
     #render template
-    return render_template("indexparse.html", year=year, title=title, feeds=products, trends=trendings)
+    return render_template("indexparse.html", year=year, title=title, feeds=products, trends=trendings, keywords=keywords, description=description)
 
 #route for more...
 @app.route('/more', methods=["POST"])
 def more():
     page = int(request.form.get("page"))
-
-    try:
-        print(page)
-        print(session["page"])
-    except:
-        pass
 
     def parser(render):
         products = []
@@ -317,13 +318,8 @@ def more():
         if session["page"] == None:
             return None
 
-    except Exception as e:
-        print(f"error: {e}")
+    except:
         session['err_counter'] += 1
-        try:
-            print(f"err_count: {session['err_counter']}")
-        except Exception as e:
-            print(f"{e}")
         if session['err_counter'] >= 5:
             session["page"] = "home"
             more()
