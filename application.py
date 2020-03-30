@@ -321,7 +321,7 @@ def more():
     except:
         session['err_counter'] += 1
         if session['err_counter'] >= 5:
-            return None
+            return jsonify(None)
         more()
         
 
