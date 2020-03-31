@@ -30,7 +30,7 @@ function main() {
                 console.log(err);
                 return false;
             }
-            
+
             if (data[0] == false){
                 console.log(data.shift());
                 return false;
@@ -49,7 +49,12 @@ function main() {
         data.append('page', page);
 
         // Send request.
-        request.send(data);
+        try {
+            request.send(data);
+        }
+        catch (err){
+            return false;
+        }
         
     }
 
