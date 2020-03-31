@@ -28,7 +28,7 @@ function main() {
                 console.log(data.shift());
                 return false;
             }
-            data.shift()
+            console.log(data.shift())
             data.forEach((each) => {
                 each["short"] = each.description.slice(0, 400);
             });
