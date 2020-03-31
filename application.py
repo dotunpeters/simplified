@@ -319,11 +319,14 @@ def more():
 
         #render none json route
         if session["page"] == None:
+            print(f"none err for: {session['page']}")
             return jsonify([{'success': False}])
 
     except:
+        print(f"err for: {session['page']}")
         return jsonify([{'success': False}])
 
+    print(f"no data for: {session['page']}")
     return jsonify([{'success': False}])
         
 
