@@ -284,6 +284,8 @@ def more():
             fashion_categ = session["page"].lower()
             render = Products.query.filter_by(category=fashion_categ).paginate(page=page, per_page=2)
             fashion_products = parser(render)
+            for i in fashion_products.items():
+                print(i['name'])
             return jsonify(fashion_products)
 
         #render home-and-office category json route
@@ -320,10 +322,9 @@ def more():
             return jsonify([{'success': False}])
 
     except:
-        session['err_counter'] += 1
-        if session['err_counter'] >= 5:
-            return jsonify([{'success': False}])
-        more()
+        return jsonify([{'success': False}])
+
+    return jsonify([{'success': False}])
         
 
 #handle server errors
