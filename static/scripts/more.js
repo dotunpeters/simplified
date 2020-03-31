@@ -14,37 +14,31 @@ function main() {
     };
 
     function load() {
-        const page = counter;
-        counter = page + 1;
-
-        // Open new request to get new products.
-        const request = new XMLHttpRequest();
-        request.open('POST', '/more');
-
-        //callback
-        request.onload = () => {
-            try {
-                let data = JSON.parse(request.responseText);
-            }
-            catch (err) {
-                console.log(err);
-                return false;
-            }
-
-            if (data[0] == false){
-                console.log(data.shift());
-                return false;
-            }
-            console.log(data.shift())
-            data.forEach((each) => {
-                each["short"] = each.description.slice(0, 400);
-                console.log(each.name);
-            });
-
-            add_product(data);
-        };
-
         try {
+            const page = counter;
+            counter = page + 1;
+
+            // Open new request to get new products.
+            const request = new XMLHttpRequest();
+            request.open('POST', '/more');
+
+            //callback
+            request.onload = () => {
+                let data = JSON.parse(request.responseText);
+
+                if (data[0] == false){
+                    console.log(data.shift());
+                    return false;
+                }
+                console.log(data.shift())
+                data.forEach((each) => {
+                    each["short"] = each.description.slice(0, 400);
+                    console.log(each.name);
+                });
+
+                add_product(data);
+            };
+
             // Add page number to request data.
             const data = new FormData();
             data.append('page', page);
@@ -52,8 +46,8 @@ function main() {
             // Send request.
             request.send(data);
         }
-        catch (err){
-            console.log(err);
+        catch (err) {
+            console.log(`error: ${err}`);
             return false;
         }
         
