@@ -23,7 +23,14 @@ function main() {
 
         //callback
         request.onload = () => {
-            let data = JSON.parse(request.responseText);
+            try {
+                let data = JSON.parse(request.responseText);
+            }
+            catch (err) {
+                console.log(err);
+                return false;
+            }
+            
             if (data[0] == false){
                 console.log(data.shift());
                 return false;
