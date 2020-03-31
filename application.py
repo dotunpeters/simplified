@@ -317,7 +317,7 @@ def more():
 
         #render none json route
         if session["page"] == None:
-            return None
+            return jsonify([{'success': False}])
 
     except:
         session['err_counter'] += 1
