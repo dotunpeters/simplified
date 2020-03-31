@@ -26,14 +26,13 @@ function main() {
             request.onload = () => {
                 let data = JSON.parse(request.responseText);
 
-                if (data[0] == false){
-                    console.log(data.shift());
+                if (data[0]['success'] == false){
                     return false;
                 }
-                console.log(data.shift())
+                
+                data.shift()
                 data.forEach((each) => {
                     each["short"] = each.description.slice(0, 400);
-                    console.log(each.name);
                 });
 
                 add_product(data);
@@ -47,7 +46,6 @@ function main() {
             request.send(data);
         }
         catch (err) {
-            console.log(`error: ${err}`);
             return false;
         }
         
@@ -185,7 +183,6 @@ function main() {
         const favourite = document.querySelectorAll(".fav");
         favourite.forEach((each) => {
             each.addEventListener("click", () => {
-                console.log("clicked!");
                 //initialize favourite localStorage
                 let list = [];
                 if (!localStorage.getItem('favourite')) {
