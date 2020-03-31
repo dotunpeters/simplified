@@ -317,11 +317,10 @@ def more():
 
         #render none json route
         if session["page"] == None:
-            print(f"none err for: {session['page']}")
+            print(f"none page")
             return jsonify([{'success': False}])
 
     except Exception as e:
-        print(f"page error")
         print(f"error code: {e}")
         return jsonify([{'success': False}])
 
