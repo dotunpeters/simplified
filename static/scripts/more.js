@@ -24,6 +24,11 @@ function main() {
         //callback
         request.onload = () => {
             let data = JSON.parse(request.responseText);
+            if (data[0] == false){
+                console.log(data.shift());
+                return false;
+            }
+            data.shift()
             data.forEach((each) => {
                 each["short"] = each.description.slice(0, 400);
             });

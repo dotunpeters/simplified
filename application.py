@@ -235,6 +235,7 @@ def more():
 
     def parser(render):
         products = []
+        products.append({'success': True})
         for each in render.items:
             dict_each = {}
             dict_each["name"] = each.name
@@ -321,7 +322,7 @@ def more():
     except:
         session['err_counter'] += 1
         if session['err_counter'] >= 5:
-            return None
+            return jsonify([{'success': False}])
         more()
         
 
