@@ -55,9 +55,6 @@ with app.app_context():
 @app.route('/feeds')
 def home():
     """Renders the feeds page."""
-    #manage api error
-    session["err_counter"] = 0
-
     year = datetime.now().year
     title="Feeds"
     keywords = "original, jumia, konga"
@@ -81,9 +78,6 @@ def home():
 @app.route('/category/<string:cat>')
 def category(cat):
     """Renders the category route."""
-    #manage api error
-    session["err_counter"] = 0
-
     year = datetime.now().year
     title = cat.replace("-", " ").capitalize()
     keywords = f"original, {cat}"
@@ -109,9 +103,6 @@ def category(cat):
 @app.route('/search/<string:category>/<string:query>')
 def search(category, query):
     """Renders the search complete route."""
-    #manage api error
-    session["err_counter"] = 0
-
     year = datetime.now().year
     title = f"Search result for '{query}'"
     keywords = f"original, {category}, {query}"
@@ -139,9 +130,6 @@ def search(category, query):
 @app.route('/search', methods=["GET"])
 def search_query():
     """Renders the search complete route."""
-    #manage api error
-    session["err_counter"] = 0
-
     year = datetime.now().year
 
     #get query
@@ -169,9 +157,6 @@ def search_query():
 @app.route('/share/<string:sku>')
 def share(sku):
     """Renders the category api."""
-    #manage api error
-    session["err_counter"] = 0
-
     year = datetime.now().year
 
     #get target product
@@ -199,9 +184,6 @@ def share(sku):
 @app.route('/favourites/<string:favlist>', methods=["GET"])
 def favourites(favlist):
     """Renders the favourites template."""
-    #manage api error
-    session["err_counter"] = 0
-    
     year = datetime.now().year
     title="Favourite items"
     keywords = f"favourite, products, original, jumia, konga"
@@ -317,11 +299,9 @@ def more():
 
         #render none json route
         if session["page"] == None:
-            print(f"none page")
             return jsonify([{'success': False}])
 
     except Exception as e:
-        print(f"error code: {e}")
         return jsonify([{'success': False}])
 
     print(f"no data page data")

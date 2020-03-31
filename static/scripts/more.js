@@ -26,7 +26,7 @@ function main() {
             request.onload = () => {
                 let data = JSON.parse(request.responseText);
 
-                if (data[0]['success'] == false){
+                if (data[0]['success'] === false){
                     return false;
                 }
                 
