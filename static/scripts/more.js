@@ -44,15 +44,16 @@ function main() {
             add_product(data);
         };
 
-        // Add page number to request data.
-        const data = new FormData();
-        data.append('page', page);
-
-        // Send request.
         try {
+            // Add page number to request data.
+            const data = new FormData();
+            data.append('page', page);
+
+            // Send request.
             request.send(data);
         }
         catch (err){
+            console.log(err);
             return false;
         }
         
