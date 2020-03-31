@@ -322,8 +322,9 @@ def more():
             print(f"none err for: {session['page']}")
             return jsonify([{'success': False}])
 
-    except:
+    except Exception as e:
         print(f"err for: {session['page']}")
+        print(f"error code: {e}")
         return jsonify([{'success': False}])
 
     print(f"no data for: {session['page']}")
