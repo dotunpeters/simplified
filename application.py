@@ -284,8 +284,6 @@ def more():
             fashion_categ = session["page"].lower()
             render = Products.query.filter_by(category=fashion_categ).paginate(page=page, per_page=2)
             fashion_products = parser(render)
-            # for i in fashion_products:
-            #     print(i.name)
             return jsonify(fashion_products)
 
         #render home-and-office category json route
@@ -323,11 +321,11 @@ def more():
             return jsonify([{'success': False}])
 
     except Exception as e:
-        print(f"err for: {session['page']}")
+        print(f"page error")
         print(f"error code: {e}")
         return jsonify([{'success': False}])
 
-    print(f"no data for: {session['page']}")
+    print(f"no data page data")
     return jsonify([{'success': False}])
         
 
