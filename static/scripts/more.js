@@ -15,7 +15,7 @@ function main() {
 
     function load() {
         const page = counter;
-        counter = page+ 1;
+        counter = page + 1;
 
         // Open new request to get new products.
         const request = new XMLHttpRequest();
@@ -31,6 +31,7 @@ function main() {
             console.log(data.shift())
             data.forEach((each) => {
                 each["short"] = each.description.slice(0, 400);
+                console.log(each.name);
             });
 
             add_product(data);
@@ -41,12 +42,7 @@ function main() {
         data.append('page', page);
 
         // Send request.
-        try {
-            request.send(data);
-        }
-        catch (err) {
-            console.log(err);
-        }
+        request.send(data);
         
     }
 
