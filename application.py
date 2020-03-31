@@ -284,8 +284,8 @@ def more():
             fashion_categ = session["page"].lower()
             render = Products.query.filter_by(category=fashion_categ).paginate(page=page, per_page=2)
             fashion_products = parser(render)
-            for i in fashion_products:
-                print(i.name)
+            # for i in fashion_products:
+            #     print(i.name)
             return jsonify(fashion_products)
 
         #render home-and-office category json route
