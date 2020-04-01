@@ -6,6 +6,7 @@ Routes and views for the flask application.
 from flask import Flask
 from flask_session import Session
 from tempfile import mkdtemp
+from model import *
 import os
 
 app = Flask(__name__)
@@ -21,24 +22,6 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 Session(app)
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
-import os
-
-#models
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
-class Products(db.Model):
-    __tablename__ = "products"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    sku = db.Column(db.String, nullable=False)
-    price = db.Column(db.String, nullable=False)
-    stars = db.Column(db.String, nullable=False)
-    link = db.Column(db.String, nullable=False)
-    image_url = db.Column(db.String, nullable=False)
-    reviews = db.Column(db.Integer, nullable=False)
-    seller = db.Column(db.String, nullable=False)
-    category = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
 
 #database configuration
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
@@ -197,8 +180,14 @@ def favourites(favlist):
         #get each sku from feeds
         products = []
         for each in favlist:
-            results = Products.query.filter(Products.sku == each).all()
-            if (results[0] == None):
+            try:
+                results = Products.query.filter(Products.sku == each).all()
+            except:
+                continue
+            try:
+                if (results[0] == None):
+                    continue
+            except:
                 continue
             products.append(results[0])
 
@@ -304,7 +293,6 @@ def more():
     except Exception as e:
         return jsonify([{'success': False}])
 
-    print(f"no data page data")
     return jsonify([{'success': False}])
         
 
