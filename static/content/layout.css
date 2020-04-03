@@ -113,7 +113,6 @@ header {
 .query {
 	padding: 3px 10px;
 	font-size: 90%;
-	text-wrap: normal;
 	word-wrap: break-word;
 }
 
