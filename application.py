@@ -300,3 +300,8 @@ def more():
 @app.errorhandler(404)
 def page_not_found(e):
     return redirect(url_for("home"))
+
+
+
+if __name == '__main__':
+    app.run(debug=True, host='0.0.0.0')
