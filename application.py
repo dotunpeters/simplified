@@ -16,7 +16,7 @@ app.config["DEBUG"] = True
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SECRET_KEY"] = "5685fab554f78bee40b8d0e681a1a981"
 
 #create user session
 Session(app)
@@ -24,7 +24,7 @@ from datetime import datetime
 from flask import render_template, session, redirect, url_for, jsonify, request
 
 #database configuration
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://cmehgjnylkevlo:2a0a1d2d4f46fd73748c8b47d57b452532a4b928ef1f7912287f71c31ae3b6ae@ec2-34-195-169-25.compute-1.amazonaws.com:5432/dcrnemrsq9rteu"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
@@ -303,5 +303,5 @@ def page_not_found(e):
 
 
 
-if __name == '__main__':
+if __name__ == '__main__':
     app.run()
