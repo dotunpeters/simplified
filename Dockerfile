@@ -1,7 +1,7 @@
 FROM ubuntu
 
 RUN apt-get update -y && \
-    apt-get install -y python-pip3 python3-dev
+    apt-get install -y python-pip python3-dev
 
 RUN apt-get pip3 install --upgrade setuptools
 
