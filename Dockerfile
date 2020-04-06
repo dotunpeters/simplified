@@ -1,14 +1,19 @@
-FROM alpine:latest
+FROM ubuntu
 
-RUN apk add --no-cache python3-dev \
-    && pip3 install --upgrade pip
+RUN apt-get update -y && \
+    apt-get install -y python-pip3 python3-dev
 
-RUN apk add install libxml2-dev libxslt-dev python-dev
+RUN apt-get pip3 install --upgrade setuptools
 
-RUN pip3 install python3-lxml
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
+RUN pip install -r requirements.txt
+
 COPY . /app
 
-RUN pip3 --no-cache-dir install -r requirements.txt
+ENTRYPOINT [ "python" ]
+
+CMD [ "application.py" ]
