@@ -11,6 +11,8 @@ import os
 
 app = Flask(__name__)
 
+port = int(os.environ.get("PORT", 5000))
+
 #session configuration
 app.config["DEBUG"] = True
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -304,4 +306,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True,host='0.0.0.0',port=port)
