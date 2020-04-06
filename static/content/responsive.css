@@ -81,6 +81,7 @@
 		margin-right: 10px;
 		cursor: pointer;
 		font-weight: 600;
+		font-size: 120% !important;
 	}
 
 	#favlink{
