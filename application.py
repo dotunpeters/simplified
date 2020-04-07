@@ -210,7 +210,6 @@ def more():
     if request.form.get("test"):
         session["page"] = request.form.get("test")
         if request.form.get("query"):
-            print("-->", request.form.get("query"))
             if request.form.get("test") == "search":
                 session_data["query"] = request.form.get("query")   
             if request.form.get("test") == "cat-search":
@@ -235,7 +234,6 @@ def more():
             products.append(dict_each)
         return products
     try:
-        print(f"session: {session['page']}")
         #render home json route
         if session["page"] == "home":
             render = Products.query.paginate(page=page, per_page=2)
@@ -293,8 +291,6 @@ def more():
 
         #render category search json route
         if session["page"] == "cat-search":
-            print(session_data["query"][0])
-            print(session_data["query"][1])
             query = session_data["query"][0]
             cat_checks = session_data["query"][1]
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
@@ -306,7 +302,6 @@ def more():
             return jsonify([{'success': False}])
 
     except Exception as e:
-        print("err")
         return jsonify([{'success': False}])
 
     return jsonify([{'success': False}])
