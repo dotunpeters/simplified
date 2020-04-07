@@ -54,7 +54,7 @@ class Test_more_route(unittest.TestCase):
         self.assertEqual(result[0]["success"], True)
 
         #Category Search query more api route test
-        data = {"page": 2, "test": "cat-search", "query": ["20", random.choice(categories)]}
+        data = {"page": 2, "test": "cat-search", "query": f"20,{random.choice(categories)}"}
         result = requests.post("http://127.0.0.1:5000/more", data=data).json()
         self.assertEqual(result[0]["success"], True)
 

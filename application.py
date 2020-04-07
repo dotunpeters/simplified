@@ -210,7 +210,11 @@ def more():
     if request.form.get("test"):
         session["page"] = request.form.get("test")
         if request.form.get("query"):
-            session["query"] = request.form.get("query")
+            print("-->", request.form.get("query"))
+            if request.form.get("test") == "search":
+                session_data["query"] = request.form.get("query")   
+            if request.form.get("test") == "cat-search":
+                session_data["query"] = request.form.get("query").split(",")
 
     def parser(render):
         products = []
@@ -289,6 +293,8 @@ def more():
 
         #render category search json route
         if session["page"] == "cat-search":
+            print(session_data["query"][0])
+            print(session_data["query"][1])
             query = session_data["query"][0]
             cat_checks = session_data["query"][1]
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
