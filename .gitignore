@@ -1,4 +1,4 @@
 
 # Ignore custom_config package folder
-custom_config
+db_details.txt
 Dockerfile
