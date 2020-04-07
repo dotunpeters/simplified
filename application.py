@@ -207,6 +207,11 @@ def favourites(favlist):
 def more():
     page = int(request.form.get("page"))
 
+    if request.form.get("test"):
+        session["page"] = request.form.get("test")
+        if request.form.get("query"):
+            session["query"] = request.form.get("query")
+
     def parser(render):
         products = []
         products.append({'success': True})
