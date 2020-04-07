@@ -85,8 +85,7 @@
 	}
 
 	#favlink{
-		color: black !important;
-		font-size: 80% !important;
+		font-size: 95% !important;
 	}
 
 	.menu {
@@ -99,5 +98,6 @@
 
 	.logo{
 		margin-left: 10px;
+		padding-top: 5px;
 	}
 }
