@@ -226,6 +226,7 @@ def more():
             products.append(dict_each)
         return products
     try:
+        print(f"session: {session['page']}")
         #render home json route
         if session["page"] == "home":
             render = Products.query.paginate(page=page, per_page=2)
@@ -294,6 +295,7 @@ def more():
             return jsonify([{'success': False}])
 
     except Exception as e:
+        print("err")
         return jsonify([{'success': False}])
 
     return jsonify([{'success': False}])
