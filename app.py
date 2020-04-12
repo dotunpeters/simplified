@@ -208,6 +208,7 @@ def favourites(favlist):
 def more():
     page = int(request.form.get("page"))
 
+    #testing
     if request.form.get("test"):
         session["page"] = request.form.get("test")
         if request.form.get("query"):
