@@ -1,3 +1,6 @@
 db_details.txt
 custom.py
 Dockerfile
+__pycache__
+.vs
+.vscode

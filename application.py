@@ -7,6 +7,7 @@ from flask import Flask
 from flask_session import Session
 from tempfile import mkdtemp
 from model import *
+import helpers
 import os
 
 app = Flask(__name__)
@@ -215,78 +216,60 @@ def more():
             if request.form.get("test") == "cat-search":
                 session_data["query"] = request.form.get("query").split(",")
 
-    def parser(render):
-        products = []
-        products.append({'success': True})
-        for each in render.items:
-            dict_each = {}
-            dict_each["name"] = each.name
-            dict_each["sku"] = each.sku
-            dict_each["price"] = each.price
-            dict_each["stars"] = each.stars
-            dict_each["original"] = int(float(each.stars) * 20)
-            dict_each["link"] = each.link
-            dict_each["image_url"] = each.image_url
-            dict_each["reviews"] = each.reviews
-            dict_each["seller"] = each.seller
-            dict_each["category"] = each.category
-            dict_each["description"] = each.description
-            products.append(dict_each)
-        return products
     try:
         #render home json route
         if session["page"] == "home":
             render = Products.query.paginate(page=page, per_page=2)
-            products = parser(render)
+            products = helpers.parser(render)
             return jsonify(products)
 
         #render computing category json route
         if session["page"].lower() == "computing":
             computing_categ = session["page"].lower()
             render = Products.query.filter_by(category=computing_categ).paginate(page=page, per_page=2)
-            computing_products = parser(render)
+            computing_products = helpers.parser(render)
             return jsonify(computing_products)
 
         #render electronics category json route
         if session["page"].lower() == "electronics":
             electronics_categ = session["page"].lower()
             render = Products.query.filter_by(category=electronics_categ).paginate(page=page, per_page=2)
-            electronics_products = parser(render)
+            electronics_products = helpers.parser(render)
             return jsonify(electronics_products)
 
         #render health-and-beauty category json route
         if session["page"].lower() == "health-and-beauty":
             healthbeauty_categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=healthbeauty_categ).paginate(page=page, per_page=2)
-            healthbeauty_products = parser(render)
+            healthbeauty_products = helpers.parser(render)
             return jsonify(healthbeauty_products)
 
         #render fashion category json route
         if session["page"].lower() == "fashion":
             fashion_categ = session["page"].lower()
             render = Products.query.filter_by(category=fashion_categ).paginate(page=page, per_page=2)
-            fashion_products = parser(render)
+            fashion_products = helpers.parser(render)
             return jsonify(fashion_products)
 
         #render home-and-office category json route
         if session["page"].lower() == "home-and-office":
             homeoffice_categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=homeoffice_categ).paginate(page=page, per_page=2)
-            homeoffice_products = parser(render)
+            homeoffice_products = helpers.parser(render)
             return jsonify(homeoffice_products)
 
         #render phones-and-tablets category json route
         if session["page"].lower() == "phones-and-tablets":
             phonestablets_categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=phonestablets_categ).paginate(page=page, per_page=2)
-            phonestablets_products = parser(render)
+            phonestablets_products = helpers.parser(render)
             return jsonify(phonestablets_products)
 
         #render search json route
         if session["page"] == "search":
             query = session_data["query"]
             render = Products.query.filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
-            products = parser(render)
+            products = helpers.parser(render)
             return jsonify(products)
 
         #render category search json route
@@ -294,7 +277,7 @@ def more():
             query = session_data["query"][0]
             cat_checks = session_data["query"][1]
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
-            products = parser(render)
+            products = helpers.parser(render)
             return jsonify(products)
 
         #render none json route
