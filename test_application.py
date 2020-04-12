@@ -1,6 +1,5 @@
 from flask import url_for
 import unittest
-import application
 from application import app
 import requests
 import random
