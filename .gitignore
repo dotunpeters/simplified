@@ -4,3 +4,4 @@ Dockerfile
 __pycache__
 .vs
 .vscode
+.coverage
