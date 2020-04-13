@@ -7,9 +7,13 @@ from flask import Flask
 from flask_session import Session
 from tempfile import mkdtemp
 from model import *
+from helpers import parser
 import os
 
 app = Flask(__name__)
+
+#heroku port
+port = int(os.environ.get("PORT", 5000))
 
 #session configuration
 app.config["DEBUG"] = True
@@ -204,24 +208,15 @@ def favourites(favlist):
 def more():
     page = int(request.form.get("page"))
 
-    def parser(render):
-        products = []
-        products.append({'success': True})
-        for each in render.items:
-            dict_each = {}
-            dict_each["name"] = each.name
-            dict_each["sku"] = each.sku
-            dict_each["price"] = each.price
-            dict_each["stars"] = each.stars
-            dict_each["original"] = int(float(each.stars) * 20)
-            dict_each["link"] = each.link
-            dict_each["image_url"] = each.image_url
-            dict_each["reviews"] = each.reviews
-            dict_each["seller"] = each.seller
-            dict_each["category"] = each.category
-            dict_each["description"] = each.description
-            products.append(dict_each)
-        return products
+    #testing
+    if request.form.get("test"):
+        session["page"] = request.form.get("test")
+        if request.form.get("query"):
+            if request.form.get("test") == "search":
+                session_data["query"] = request.form.get("query")   
+            if request.form.get("test") == "cat-search":
+                session_data["query"] = request.form.get("query").split(",")
+
     try:
         #render home json route
         if session["page"] == "home":
@@ -229,47 +224,13 @@ def more():
             products = parser(render)
             return jsonify(products)
 
-        #render computing category json route
-        if session["page"].lower() == "computing":
-            computing_categ = session["page"].lower()
-            render = Products.query.filter_by(category=computing_categ).paginate(page=page, per_page=2)
-            computing_products = parser(render)
-            return jsonify(computing_products)
-
-        #render electronics category json route
-        if session["page"].lower() == "electronics":
-            electronics_categ = session["page"].lower()
-            render = Products.query.filter_by(category=electronics_categ).paginate(page=page, per_page=2)
-            electronics_products = parser(render)
-            return jsonify(electronics_products)
-
-        #render health-and-beauty category json route
-        if session["page"].lower() == "health-and-beauty":
-            healthbeauty_categ = session["page"].replace("-", " ").lower()
-            render = Products.query.filter_by(category=healthbeauty_categ).paginate(page=page, per_page=2)
-            healthbeauty_products = parser(render)
-            return jsonify(healthbeauty_products)
-
-        #render fashion category json route
-        if session["page"].lower() == "fashion":
-            fashion_categ = session["page"].lower()
-            render = Products.query.filter_by(category=fashion_categ).paginate(page=page, per_page=2)
-            fashion_products = parser(render)
-            return jsonify(fashion_products)
-
-        #render home-and-office category json route
-        if session["page"].lower() == "home-and-office":
-            homeoffice_categ = session["page"].replace("-", " ").lower()
-            render = Products.query.filter_by(category=homeoffice_categ).paginate(page=page, per_page=2)
-            homeoffice_products = parser(render)
-            return jsonify(homeoffice_products)
-
-        #render phones-and-tablets category json route
-        if session["page"].lower() == "phones-and-tablets":
-            phonestablets_categ = session["page"].replace("-", " ").lower()
-            render = Products.query.filter_by(category=phonestablets_categ).paginate(page=page, per_page=2)
-            phonestablets_products = parser(render)
-            return jsonify(phonestablets_products)
+        #render category json route
+        if session["page"] in ["computing", "electronics", "fashion", "health-and-beauty", "home-and-office", "phones-and-tablets"]:
+            categ = session["page"].replace("-", " ").lower()
+            render = Products.query.filter_by(category=categ).paginate(page=page, per_page=2)
+            products = parser(render)
+            categ = categ.replace(" ", "-").lower()
+            return jsonify(products)
 
         #render search json route
         if session["page"] == "search":
@@ -286,10 +247,6 @@ def more():
             products = parser(render)
             return jsonify(products)
 
-        #render none json route
-        if session["page"] == None:
-            return jsonify([{'success': False}])
-
     except Exception as e:
         return jsonify([{'success': False}])
 
@@ -300,3 +257,8 @@ def more():
 @app.errorhandler(404)
 def page_not_found(e):
     return redirect(url_for("home"))
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True,host='0.0.0.0',port=port)

@@ -81,6 +81,12 @@
 		margin-right: 10px;
 		cursor: pointer;
 		font-weight: 600;
+		font-size: 120% !important;
+		padding-top: 15px !important;
+	}
+
+	#favlink{
+		font-size: 94% !important;
 	}
 
 	.menu {
@@ -93,5 +99,6 @@
 
 	.logo{
 		margin-left: 10px;
+		padding-top: 5px;
 	}
 }

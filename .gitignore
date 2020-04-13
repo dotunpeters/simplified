@@ -1,4 +1,7 @@
-
-# Ignore custom_config package folder
-custom_config
+db_details.txt
+custom.py
 Dockerfile
+__pycache__
+.vs
+.vscode
+.coverage
