@@ -1,5 +1,5 @@
 
-#convert paginated object into list of dicts
+#convert paginated object into list of dictionary object
 def parser(render):
     products = []
     products.append({'success': True})
