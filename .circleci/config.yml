@@ -12,11 +12,7 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: 
-            - flask run
-            - python test_app.py
-            - python helpers.py
-            - python test_helpers.py
+          command: ./manage.py test
           name: Test
 
 workflows:
