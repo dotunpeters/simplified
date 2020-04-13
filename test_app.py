@@ -1,10 +1,6 @@
-from flask import url_for
 import unittest
-import app
-from app import app
-import requests
+from app import *
 import random
-import os
 
 class Test_more_route(unittest.TestCase):
 
@@ -23,35 +19,56 @@ class Test_more_route(unittest.TestCase):
     def test_more(self):
         categories = ["home", "computing", "electronics", "health-and-beauty", "fashion", "home-and-office", "phones-and-tablets"]
 
-        #first more api route test
+        #home more api route test
+        data = {"page": random.randint(2, 20), "test": "home"}
+        result = self.app.post("/more", data=data)
+        self.assertEqual(result.status_code, 200)
+        result = result.get_json()
+        self.assertEqual(result[0]["success"], True)
+
+        #"computing" more api route test
+        data = {"page": random.randint(2, 20), "test": "computing"}
+        result = self.app.post("/more", data=data)
+        self.assertEqual(result.status_code, 200)
+        result = result.get_json()
+        self.assertEqual(result[0]["success"], True)
+
+        #electronics more api route test
+        data = {"page": random.randint(2, 20), "test": "electronics"}
+        result = self.app.post("/more", data=data)
+        self.assertEqual(result.status_code, 200)
+        result = result.get_json()
+        self.assertEqual(result[0]["success"], True)
+
+        #random more api route test
         data = {"page": random.randint(2, 20), "test": random.choice(categories)}
         result = self.app.post("/more", data=data)
         self.assertEqual(result.status_code, 200)
         result = result.get_json()
         self.assertEqual(result[0]["success"], True)
 
-        #second more api route test
+        #random more api route test
         data = {"page": random.randint(2, 20), "test": random.choice(categories)}
         result = self.app.post("/more", data=data)
         self.assertEqual(result.status_code, 200)
         result = result.get_json()
         self.assertEqual(result[0]["success"], True)
 
-        #third more api route test
+        #random more api route test
         data = {"page": random.randint(2, 20), "test": random.choice(categories)}
         result = self.app.post("/more", data=data)
         self.assertEqual(result.status_code, 200)
         result = result.get_json()
         self.assertEqual(result[0]["success"], True)
 
-        #fourth more api route test
+        #random more api route test
         data = {"page": random.randint(2, 20), "test": " "}
         result = self.app.post("/more", data=data)
         self.assertEqual(result.status_code, 200)
         result = result.get_json()
         self.assertEqual(result[0]["success"], False)
 
-        #fifth more api route test
+        #random more api route test
         data = {"page": 0, "test": random.choice(categories)}
         result = self.app.post("/more", data=data)
         self.assertEqual(result.status_code, 200)
@@ -149,6 +166,10 @@ class Test_more_route(unittest.TestCase):
         result = self.app.get("/search", query_string=data)
         self.assertEqual(result.status_code, 200)
 
+    def test_page_not_found(self):
+        #404 route test
+        result = self.app.get("/xyz")
+        self.assertEqual(result.status_code, 302)
 
 if __name__ == '__main__':
     unittest.main()

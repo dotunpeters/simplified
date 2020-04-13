@@ -225,7 +225,6 @@ def more():
             return jsonify(products)
 
         #render category json route
-        print(session["page"])
         if session["page"] in ["computing", "electronics", "fashion", "health-and-beauty", "home-and-office", "phones-and-tablets"]:
             categ = session["page"].replace("-", " ").lower()
             render = Products.query.filter_by(category=categ).paginate(page=page, per_page=2)
@@ -247,10 +246,6 @@ def more():
             render = Products.query.filter_by(category=cat_checks).filter(Products.name.ilike(f"%{query}%")).paginate(page=page, per_page=2)
             products = parser(render)
             return jsonify(products)
-
-        #render none json route
-        if session["page"] == None:
-            return jsonify([{'success': False}])
 
     except Exception as e:
         return jsonify([{'success': False}])
