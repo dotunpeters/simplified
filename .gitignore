@@ -1,7 +1,8 @@
 db_details.txt
 custom.py
 Dockerfile
-__pycache__
+__pycache__/
 .vs
 .vscode
 .coverage
+x
