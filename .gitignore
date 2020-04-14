@@ -2,7 +2,7 @@ db_details.txt
 custom.py
 Dockerfile
 __pycache__/
+*.pyc
 .vs
 .vscode
 .coverage
-x
