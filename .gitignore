@@ -1,7 +1,7 @@
 db_details.txt
 custom.py
 Dockerfile
-__pycache__/
+**/__pycache__/
 *.pyc
 .vs
 .vscode
