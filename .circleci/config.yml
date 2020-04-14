@@ -1,24 +1,21 @@
 version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
 jobs:
-  run_tests:
-    docker:
-      - image: circleci/python:3.8.2
+  build-and-test:
+    executor: python/default
     steps:
       - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
-        name: Install Python Dependencies
-        command: |
-          echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-          pip install --user -r requirements.txt
-      - run:
-        name: Run Unit run_tests
-        command: |
-          pytest --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
-      - store_test_results:
-        path: test-reports
-      - store_artifacts:
-        path: test-reports
+          command: pytest
+          name: Test
+
 workflows:
-  build_test:
+  main:
     jobs:
-      - run_tests
+      - build-and-test
