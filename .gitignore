@@ -6,3 +6,5 @@ __pycache__/
 .vs
 .vscode
 .coverage
+htmlcov/
+.pytest_cache/
