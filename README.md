@@ -16,6 +16,6 @@
 Links
 -----
 
-* [Simplified](https://simplified.cf)
+* [Simplified](http://simplified.cf)
 * [Simplified-staging](https://simplified-staging-data.herokuapp.com)
 * [GitHub](https://github.com/dotunpeters/simplified)
