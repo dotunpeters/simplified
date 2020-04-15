@@ -15,10 +15,6 @@ jobs:
           name: Run Unit run_tests
           command: |
             pytest --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
-      - store_test_results:
-        path: test-reports
-      - store_artifacts:
-        path: test-reports
 
 workflows:
   main:
