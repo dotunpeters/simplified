@@ -1,5 +1,4 @@
 ## Simplified
-=========
 #### Surf online products with ease
 
 * Surf through online products from popular eCommerce site in Nigeria with ease.
@@ -17,6 +16,6 @@
 Links
 -----
 
-* `Simplified <https://simplified.cf>`_
-* `Simplified-staging <https://simplified-staging-data.herokuapp.com>`_
-* `GitHub <https://github.com/dotunpeters/simplified>`_
+* [Simplified](http://simplified.cf)
+* [Simplified-staging](https://simplified-staging-data.herokuapp.com)
+* [GitHub](https://github.com/dotunpeters/simplified)
