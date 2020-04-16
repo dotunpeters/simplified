@@ -50,7 +50,7 @@
 .product_description {
 	line-height: 18px;
 	word-spacing: 3px;
-	word-wrap: break-word !important;
+	word-wrap: break-word;
 }
 
 .product_star {
