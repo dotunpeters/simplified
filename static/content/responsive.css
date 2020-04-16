@@ -82,7 +82,8 @@
 		cursor: pointer;
 		font-weight: 600;
 		font-size: 130% !important;
-		padding-top: 100px !important;
+		padding-top: 10px !important;
+		padding-top: 2px !important;
 	}
 
 	#favlink{
