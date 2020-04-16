@@ -74,7 +74,7 @@
 					<button data-share="{{feed.sku}}" data-name="{{feed.name}}" class="share">&#10148;</button>
 					<button data-sku="{{feed.sku}}" class="fav">&#9825;</button>
 				</div>
-				<p class="product_name"> {{feed.name}} </p>
+				<p class="product_name"> {{feed.name[0:100]}} </p>
 				<p class="product_star"> <b>{{feed.stars}}&#9733;</b> with <b>{{feed.reviews}}</b> reviews. <b>{{feed.original}}%</b> original.</p>
 				<p class="product_star"> <b>{{feed.category.capitalize()}}</b> </p>
 				<p class="product_description"> {{feed.description[0:400]}}... </p>
