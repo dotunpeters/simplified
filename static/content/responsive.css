@@ -92,6 +92,10 @@
 		bottom: 3px;
 	}
 
+	.product_description {
+		word-wrap: break-word !important;
+	}
+
 	.menu {
 		font-size: 200% !important;
 	}
