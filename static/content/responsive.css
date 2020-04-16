@@ -86,11 +86,11 @@
 
 	#favlink{
 		font-size: 94% !important;
-		top: 50px !important;
+		top: 500px !important;
 	}
 
 	#category{
-		top: 50px !important;
+		bottom: 500px !important;
 	}
 
 	.menu {
