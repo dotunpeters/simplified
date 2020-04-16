@@ -90,8 +90,7 @@
 	}
 
 	#category{
-		display: inline !important;
-		padding-bottom: 500px !important;
+		bottom: 500px !important;
 	}
 
 	.menu {
