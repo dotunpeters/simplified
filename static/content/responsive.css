@@ -82,17 +82,15 @@
 		cursor: pointer;
 		font-weight: 600;
 		font-size: 130% !important;
-		padding-top: 0 !important;
-		padding-bottom: 10px !important;
 	}
 
 	#favlink{
 		font-size: 94% !important;
-		padding-bottom: 10px !important;
+		padding-bottom: 50px !important;
 	}
 
 	#category{
-		padding-bottom: 10px !important;
+		padding-bottom: 50px !important;
 	}
 
 	.menu {
