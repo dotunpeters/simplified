@@ -87,9 +87,9 @@
 	}
 
 	#favlink{
-		font-size: 92% !important;
+		font-size: 90% !important;
 		position: relative;
-		top: 3px;
+		bottom: 3px;
 	}
 
 	.menu {
