@@ -76,13 +76,13 @@
 	}
 
 	#mobile_search {
-		display: inline-block;
+		display: inline;
 		color: #393e46;
 		margin-right: 10px;
 		cursor: pointer;
 		font-weight: 600;
 		font-size: 130% !important;
-		margin-top: 100px !important;
+		padding-top: 100px !important;
 	}
 
 	#favlink{
