@@ -83,11 +83,13 @@
 		cursor: pointer;
 		font-weight: 600;
 		font-size: 130% !important;
-		top: 5px;
+		top: 3px;
 	}
 
 	#favlink{
 		font-size: 92% !important;
+		position: relative;
+		top: 3px;
 	}
 
 	.menu {
