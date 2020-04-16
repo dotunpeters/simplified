@@ -81,12 +81,13 @@
 		margin-right: 10px;
 		cursor: pointer;
 		font-weight: 600;
-		font-size: 120% !important;
+		font-size: 130% !important;
 		padding-top: 15px !important;
 	}
 
 	#favlink{
 		font-size: 94% !important;
+		margin-bottom: 10px !important;
 	}
 
 	.menu {
