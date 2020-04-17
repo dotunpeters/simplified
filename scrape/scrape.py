@@ -152,18 +152,24 @@ def jumia(categ, url, test=False):
                             except Exception as e:
                                 print(f"-> ERR fileWRITE-> could not add Jumia|{categ}|{name[0:10]} to file: {e}")
 
-                            #write to database
+                            #add to database session
                             try:
                                 with app.app_context():
                                     item = Products(name=name, sku=sku, price=price, stars=stars, link=link, image_url=image_url, reviews=reviews, seller=seller, category=category, description=description)
                                     db.session.add(item)
-                                    db.session.commit()
-                                    print(f"-> SUCS dbADD-> added successfully Jumia|{categ}|{name[0:10]} to database")
                             except Exception as e:
-                                print(f"-> ERR dbADD-> could not add Jumia|{categ}|{name[0:10]} to database: {e}")
+                                print(f"-> ERR dbSESSION -> {e}")
                             
                     except Exception as e:
                         continue
+
+    #write to database
+    try:
+        with app.app_context():
+            db.session.commit()
+            print(f"-> SUCS dbADD-> added successfully Jumia | {categ} | database")
+    except Exception as e:
+        print(f"-> ERR dbADD-> could not add Jumia | {categ} | database: {e}")
 
     print(f"-> END: Jumia | {categ} | counts: {score} of {counter}")
 
@@ -285,13 +291,18 @@ def konga(categ, url, test=False):
                             with app.app_context():
                                 item = Products(name=name, sku=sku, price=price, stars=stars, link=link, image_url=image_url, reviews=reviews, seller=seller, category=category, description=description)
                                 db.session.add(item)
-                                db.session.commit()
-                                print(f"-> SUCS dbADD-> added successfully Konga|{categ}|{name[0:10]} to database")
                         except Exception as e:
-                            print(f"-> ERR dbADD-> could not add Konga|{categ}|{name[0:10]} to database: {e}")
+                            print(f"-> ERR dbSESSION -> {e}")
 
                     except Exception as e:
                         continue
+
+    try:
+        with app.app_context():
+            db.session.commit()
+            print(f"-> SUCS dbADD-> added successfully Konga | {categ} | database")
+    except Exception as e:
+        print(f"-> ERR dbADD-> could not add Konga | {categ} | database: {e}")
 
     print(f"-> END: konga | {categ} | counts: {score} of {counter}")
 
