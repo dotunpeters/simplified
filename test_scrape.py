@@ -1,7 +1,5 @@
 import unittest
-from scrape.scrape import *
-from scrape.models import *
-import random
+from scrape import *
 
 class TestScrape(unittest.TestCase):
 
