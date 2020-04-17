@@ -22,7 +22,7 @@ db.init_app(app)
 
 session = HTMLSession()
 
-def jumia(categ, url):
+def jumia(categ, url, test=False):
     """ Scrapes jumia products """
     print(f"scrapping {categ} on {url}")
 
@@ -45,6 +45,9 @@ def jumia(categ, url):
     if (initial.status_code == 200):
         rawcount = initial.html.find("body > main > section.osh-content > section.pagination > ul > li:nth-child(5) > a", first=True)
         count = int(rawcount.text)
+
+    if (test == True):
+        return True
 
     for i in range(count):
         response = session.get(f"{url}?page={i+1}")
@@ -166,7 +169,7 @@ def jumia(categ, url):
 
 
 
-def konga(categ, url):
+def konga(categ, url, test=False):
     """ Scrapes konga products """
     print(f"scrapping {categ} on {url}")
 
@@ -189,6 +192,9 @@ def konga(categ, url):
     if (initial.status_code == 200):
         rawcount = initial.html.find("#mainContent > section._9cac3_2I9l4 > section > section > div > ul > li:nth-child(4) > a", first=True)
         count = int(rawcount.text)
+        
+    if (test == True):
+        return True
 
     for i in range(count):
         response = session.get(f"{url}?page={i+1}")
