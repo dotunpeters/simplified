@@ -21,7 +21,6 @@ class Test_more_route(unittest.TestCase):
         pass
 
     def test_parser(self):
-        #home more api route test
         products = parser(render)
         self.assertTrue(products)
         self.assertEqual(products[0]['success'], True)
