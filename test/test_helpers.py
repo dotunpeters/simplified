@@ -1,6 +1,6 @@
 import unittest
-from shoplte import helpers
-from shoplte import *
+from simplified import helpers
+from simplified import *
 import random
 
 with app.app_context():

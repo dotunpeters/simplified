@@ -44,7 +44,7 @@ function main() {
 			const sku = each.dataset.share;
 			const link = `${window.location.protocol}//${document.location.host}/share/${sku}`; 
 			const name = each.dataset.name;
-			const twitter = "https://twitter.com/intent/tweet?hashtags=shoplte&ref_src=twsrc%5Etfw&text=" + name + "&tw_p=tweetbutton&url=" + link;
+			const twitter = "https://twitter.com/intent/tweet?hashtags=simplified&ref_src=twsrc%5Etfw&text=" + name + "&tw_p=tweetbutton&url=" + link;
 			const data = [{ "name": name, "link": link, "twitter": twitter}];
 
 			//compile handlebars for search

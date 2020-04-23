@@ -7,7 +7,7 @@ Application package.
 from flask import Flask
 from flask_session import Session
 from tempfile import mkdtemp
-from shoplte.model import *
+from simplified.model import *
 import os
 
 app = Flask(__name__)
@@ -35,4 +35,4 @@ with app.app_context():
     session_data = {}
     trendings = Products.query.filter(Products.reviews >= 10).order_by(Products.stars.desc()).limit(5).all()
 
-import shoplte.routes
+import simplified.routes

@@ -10,7 +10,7 @@ from requests_html import HTML, HTMLSession
 from time import perf_counter
 from multiprocessing import Process
 from csv import writer
-from shoplte.model import *
+from simplified.model import *
 import os
 
 app = Flask(__name__)
