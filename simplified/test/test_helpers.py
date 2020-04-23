@@ -1,6 +1,6 @@
 import unittest
-from helpers import *
-from app import *
+from simplified import helpers
+from simplified import *
 import random
 
 with app.app_context():
@@ -21,7 +21,7 @@ class Test_more_route(unittest.TestCase):
         pass
 
     def test_parser(self):
-        products = parser(render)
+        products = helpers.parser(render)
         self.assertTrue(products)
         self.assertEqual(products[0]['success'], True)
         self.assertGreater(len(products[1]), 1)
