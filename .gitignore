@@ -1,0 +1,10 @@
+db_details.txt
+custom.py
+Dockerfile
+__pycache__/
+*.pyc
+.vs
+.vscode
+.coverage
+.pytest_cache/
+htmlcov/

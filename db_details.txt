@@ -1,7 +1,0 @@
-HOST: ec2-34-195-169-25.compute-1.amazonaws.com
-DATABASE: dcrnemrsq9rteu
-USER: cmehgjnylkevlo
-PORT: 5432
-PASSWORD: 2a0a1d2d4f46fd73748c8b47d57b452532a4b928ef1f7912287f71c31ae3b6ae
-URI: postgres://cmehgjnylkevlo:2a0a1d2d4f46fd73748c8b47d57b452532a4b928ef1f7912287f71c31ae3b6ae@ec2-34-195-169-25.compute-1.amazonaws.com:5432/dcrnemrsq9rteu
-HEROKU CLI: heroku pg:psql postgresql-amorphous-86953 --app simplified-shop
