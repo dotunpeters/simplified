@@ -192,7 +192,7 @@ def konga(categ, url, test=False):
     if (initial.status_code == 200):
         rawcount = initial.html.find("#mainContent > section._9cac3_2I9l4 > section > section > div > ul > li:nth-child(4) > a", first=True)
         count = int(rawcount.text)
-    
+
     if (test == True):
         return True
 
