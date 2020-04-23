@@ -8,3 +8,7 @@ __pycache__/
 .coverage
 .pytest_cache/
 htmlcov/
+*.pyproj
+*.sln
+*.user
+obj/
