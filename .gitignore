@@ -11,3 +11,4 @@ htmlcov/
 *.pyproj
 *.sln
 *.user
+obj/
