@@ -1,6 +1,7 @@
 import unittest
-from scrape.scrape import *
-from scrape.models import *
+from shoplte.scrape.scrape import *
+from shoplte.scrape import models
+from shoplte import app
 
 class TestScrape(unittest.TestCase):
 

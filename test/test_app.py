@@ -1,5 +1,5 @@
 import unittest
-from app import *
+from shoplte import *
 import random
 
 class Test_more_route(unittest.TestCase):
