@@ -6,6 +6,7 @@ from flask import render_template, session, redirect, url_for, jsonify, request
 from simplified.helpers import parser
 from simplified import app, session_data, trendings
 from simplified.model import *
+import os
 
 #Routes
 @app.route('/')

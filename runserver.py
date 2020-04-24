@@ -2,10 +2,9 @@
 This script runs the simplified application using a development server.
 """
 
+import os
 from simplified import app
 
-
 if __name__ == '__main__':
-    #heroku port
     port = int(os.environ.get("PORT", 5000))
-    app.run(host=port)
+    app.run(debug=True,host='0.0.0.0',port=port)
