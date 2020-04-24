@@ -12,9 +12,6 @@ import os
 
 app = Flask(__name__)
 
-#heroku port
-port = int(os.environ.get("PORT", 5000))
-
 #session configuration
 app.config["DEBUG"] = True
 app.config["SESSION_FILE_DIR"] = mkdtemp()
