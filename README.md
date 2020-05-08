@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9b8726b61864e03b6a9e717806cf59b)](https://www.codacy.com/manual/oyelakindotun/simplified?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dotunpeters/simplified&amp;utm_campaign=Badge_Grade)
+
 ## Simplified
 #### Surf online products with ease
 
