@@ -1,4 +1,7 @@
 ## Simplified
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b161302a76b415dbe52e8d46726c90d)](https://app.codacy.com/manual/oyelakindotun/simplified?utm_source=github.com&utm_medium=referral&utm_content=dotunpeters/simplified&utm_campaign=Badge_Grade_Settings)
+
 #### Surf online products with ease
 
 * Surf through online products from popular eCommerce site in Nigeria with ease.
